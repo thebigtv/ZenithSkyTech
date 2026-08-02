@@ -54,7 +54,7 @@
   --duration-reveal: 400ms;
 
   /* Header height, used for scroll offsets */
-  --header-height: 80px;
+  --header-height: 100px;
 }
 
 @media (min-width: 960px) {
