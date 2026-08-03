@@ -137,9 +137,54 @@
   /* ------------------------------------------------------------------------
      Footer year — small enhancement, avoids a stale hard-coded year.
      ------------------------------------------------------------------------ */
-  var yearEl = document.getElementById('current-year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
+  /* ------------------------------------------------------------------------
+     4. PARTNER ENQUIRY FORM (Netlify Forms)
+     The form works with zero JavaScript — a plain HTML POST to Netlify's
+     form-handling endpoint, which redirects to a generic success page.
+     This block is progressive enhancement only: if present, it intercepts
+     the submit, posts the same data via fetch, and swaps in an inline
+     success message instead of a full page navigation. If JS fails or is
+     disabled, the native form submission above still works correctly.
+     ------------------------------------------------------------------------ */
+  var partnerForm = document.getElementById('partner-form');
+
+  if (partnerForm) {
+    var formStatus = document.getElementById('form-status');
+
+    function encodeFormData(form) {
+      var data = new FormData(form);
+      return Array.from(data.entries())
+        .map(function (pair) {
+          return encodeURIComponent(pair[0]) + '=' + encodeURIComponent(pair[1]);
+        })
+        .join('&');
+    }
+
+    partnerForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var submitButton = partnerForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      formStatus.textContent = 'Sending…';
+      formStatus.classList.remove('is-error');
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData(partnerForm)
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Network response was not OK');
+          partnerForm.reset();
+          partnerForm.hidden = true;
+          formStatus.textContent = 'Thank you — we\u2019ve received your enquiry and a member of the Zenith SkyTech team will be in touch shortly.';
+        })
+        .catch(function () {
+          formStatus.textContent = 'Something went wrong sending that — please try again, or email us directly.';
+          formStatus.classList.add('is-error');
+          submitButton.disabled = false;
+        });
+    });
   }
 
 })();
