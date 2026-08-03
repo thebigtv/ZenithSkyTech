@@ -54,7 +54,7 @@
   --duration-reveal: 400ms;
 
   /* Header height, used for scroll offsets */
-  --header-height: 100px;
+  --header-height: 80px;
 }
 
 @media (min-width: 960px) {
@@ -248,7 +248,7 @@ section {
   height: var(--header-height);
 }
 
-.site-header__logo img { height: 92px; width: auto; }
+.site-header__logo img { height: 32px; width: auto; }
 
 .primary-nav { display: none; }
 
@@ -723,4 +723,144 @@ section {
 @media (min-width: 768px) {
   .site-footer__bottom { flex-direction: row; align-items: center; justify-content: space-between; }
 }
-.site-footer__logo img { height: 192px; width: auto; opacity: 0.8; }
+.site-footer__logo img { height: 24px; width: auto; opacity: 0.8; }
+
+/* --------------------------------------------------------------------------
+   17. PARTNER PAGE — HERO VARIANT
+   Text-forward: no daylight-sweep, calmer register, shorter than the
+   homepage hero — this page's tone is a business proposition, not a
+   space reveal (Design System §8.1 note on the Partner hero variant).
+   -------------------------------------------------------------------------- */
+.hero--partner { min-height: 60vh; }
+@media (min-width: 960px) { .hero--partner { min-height: 70vh; max-height: 720px; } }
+.hero__headline--partner { font-size: 34px; }
+@media (min-width: 960px) { .hero__headline--partner { font-size: 56px; } }
+.is-current { pointer-events: none; opacity: 0.6; }
+
+/* --------------------------------------------------------------------------
+   18. STATEMENT — extended (heading + body variant, used beyond Credibility)
+   -------------------------------------------------------------------------- */
+.statement__heading { font-size: 28px; margin-bottom: var(--space-3); }
+.statement__body { font-size: 18px; color: var(--color-slate); }
+@media (min-width: 960px) { .statement__heading { font-size: 36px; } }
+
+/* --------------------------------------------------------------------------
+   19. PARTNER BENEFITS
+   -------------------------------------------------------------------------- */
+.benefits-list {
+  display: grid;
+  gap: var(--space-4);
+}
+@media (min-width: 768px) {
+  .benefits-list { grid-template-columns: 1fr 1fr; }
+}
+.benefit {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+.benefit__icon {
+  flex-shrink: 0;
+  color: var(--color-blue);
+  margin-top: 2px;
+}
+.benefit h3 { font-size: 18px; margin-bottom: 4px; }
+.benefit p { font-size: 14px; color: var(--color-slate); }
+
+/* --------------------------------------------------------------------------
+   20. CRITERIA ("What We're Looking For")
+   Deliberately plain — a checklist, not a marketing section.
+   -------------------------------------------------------------------------- */
+.criteria { background: var(--color-surface); }
+.criteria__inner { max-width: 760px; margin-inline: auto; }
+.criteria__list { display: flex; flex-direction: column; gap: var(--space-2); }
+.criteria__list li {
+  position: relative;
+  padding-left: var(--space-4);
+  font-size: 17px;
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+.criteria__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--color-blue);
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   21. CREDENTIALS
+   -------------------------------------------------------------------------- */
+.credentials__inner { max-width: 640px; margin-inline: auto; text-align: center; }
+.credentials__lockup { margin-bottom: var(--space-4); }
+.credentials__lockup img { max-width: 320px; margin-inline: auto; }
+.credentials__body { color: var(--color-slate); font-size: 16px; }
+
+/* --------------------------------------------------------------------------
+   22. FORMS — Design System Forms component
+   -------------------------------------------------------------------------- */
+.partner-form { background: var(--color-surface); border-top: 1px solid var(--color-border); }
+.partner-form__inner { max-width: 640px; margin-inline: auto; }
+.partner-form__intro { color: var(--color-slate); font-size: 16px; }
+
+.form { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4); }
+.form__row { display: flex; flex-direction: column; gap: 6px; }
+.form__row-group { display: grid; gap: var(--space-3); }
+@media (min-width: 640px) {
+  .form__row-group { grid-template-columns: 1fr 1fr; }
+}
+
+.form label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-slate);
+}
+.form__optional { font-weight: 400; opacity: 0.7; }
+
+.form input,
+.form select,
+.form textarea {
+  background: var(--color-void);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-button);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 12px 14px;
+  min-height: 44px;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+.form textarea { min-height: 100px; resize: vertical; }
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--color-blue);
+}
+.form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%238B96A6' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* Honeypot field — visually hidden, present for Netlify's spam trap only */
+.form__honeypot {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+.form__status {
+  font-size: 14px;
+  color: var(--color-skylight);
+  min-height: 20px;
+}
+.form__status.is-error { color: #E8846B; }
