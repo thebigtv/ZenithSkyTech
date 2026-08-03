@@ -248,7 +248,7 @@ section {
   height: var(--header-height);
 }
 
-.site-header__logo img { height: 96px; width: auto; }
+.site-header__logo img { height: 84px; width: auto; }
 
 .primary-nav { display: none; }
 
