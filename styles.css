@@ -248,7 +248,7 @@ section {
   height: var(--header-height);
 }
 
-.site-header__logo img { height: 84px; width: auto; }
+.site-header__logo img { height: 32px; width: auto; }
 
 .primary-nav { display: none; }
 
@@ -723,7 +723,7 @@ section {
 @media (min-width: 768px) {
   .site-footer__bottom { flex-direction: row; align-items: center; justify-content: space-between; }
 }
-.site-footer__logo img { height: 96px; width: auto; opacity: 0.8; }
+.site-footer__logo img { height: 24px; width: auto; opacity: 0.8; }
 
 /* --------------------------------------------------------------------------
    17. PARTNER PAGE — HERO VARIANT
@@ -731,8 +731,18 @@ section {
    homepage hero — this page's tone is a business proposition, not a
    space reveal (Design System §8.1 note on the Partner hero variant).
    -------------------------------------------------------------------------- */
-.hero--partner { min-height: 60vh; }
-@media (min-width: 960px) { .hero--partner { min-height: 70vh; max-height: 720px; } }
+/* Mobile: use a landscape-friendly aspect-ratio rather than a tall
+   viewport-height box. object-fit:cover crops to match the CONTAINER's
+   shape — a tall narrow mobile box forces a wide photo to lose most of
+   its left/right edges to fill it. Keeping the box closer to the
+   photo's natural landscape shape preserves far more of the image. */
+.hero--partner {
+  aspect-ratio: 4 / 3;
+  min-height: 320px;
+}
+@media (min-width: 960px) {
+  .hero--partner { aspect-ratio: auto; min-height: 70vh; max-height: 720px; }
+}
 .hero__headline--partner { font-size: 34px; }
 @media (min-width: 960px) { .hero__headline--partner { font-size: 56px; } }
 .is-current { pointer-events: none; opacity: 0.6; }
