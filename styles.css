@@ -738,7 +738,7 @@ section {
    photo's natural landscape shape preserves far more of the image. */
 .hero--partner {
   aspect-ratio: 4 / 3;
-  min-height: 320px;
+  min-height: 420px;
 }
 @media (min-width: 960px) {
   .hero--partner { aspect-ratio: auto; min-height: 70vh; max-height: 720px; }
