@@ -1090,3 +1090,4 @@ section {
    30. Current-page nav indicator (lightweight, text-only — used sparingly)
    -------------------------------------------------------------------------- */
 .is-current-link { color: var(--color-blue); }
+ 
