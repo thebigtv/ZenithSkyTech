@@ -187,4 +187,44 @@
     });
   }
 
+  /* ------------------------------------------------------------------------
+     5. ACCORDION (FAQ)
+     Single-open behaviour: opening one item closes any other that's open.
+     Height is animated via max-height (set inline in px on open, reset to
+     0 on close) rather than the CSS 'auto' keyword, since browsers can't
+     transition to/from 'auto' — this is the standard workaround.
+     Fully keyboard-operable via native <button> semantics; aria-expanded
+     is the single source of truth for open/closed state.
+     ------------------------------------------------------------------------ */
+  var accordionItems = document.querySelectorAll('.accordion__item');
+
+  accordionItems.forEach(function (item) {
+    var trigger = item.querySelector('.accordion__trigger');
+    var panel = item.querySelector('.accordion__panel');
+    if (!trigger || !panel) return;
+
+    trigger.addEventListener('click', function () {
+      var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+      // Close any other open item first (single-open behaviour)
+      accordionItems.forEach(function (other) {
+        if (other === item) return;
+        var otherTrigger = other.querySelector('.accordion__trigger');
+        var otherPanel = other.querySelector('.accordion__panel');
+        if (otherTrigger && otherTrigger.getAttribute('aria-expanded') === 'true') {
+          otherTrigger.setAttribute('aria-expanded', 'false');
+          otherPanel.style.maxHeight = '';
+        }
+      });
+
+      if (isOpen) {
+        trigger.setAttribute('aria-expanded', 'false');
+        panel.style.maxHeight = '';
+      } else {
+        trigger.setAttribute('aria-expanded', 'true');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
 })();
