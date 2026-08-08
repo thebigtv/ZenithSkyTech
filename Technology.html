@@ -1,230 +1,348 @@
-/* ==========================================================================
-   ZENITH SKYTECH — HOMEPAGE SCRIPT
-   Three responsibilities only, each isolated so they can be unit tested
-   or reused independently on future pages:
-     1. Sticky header state (transparent → solid on scroll)
-     2. Mobile navigation overlay (open/close, focus management, Escape)
-     3. Scroll-reveal animation trigger (IntersectionObserver, fires once)
-   No external libraries. No framework. Progressive enhancement throughout —
-   every link and button works with JavaScript disabled; JS only adds motion
-   and the mobile overlay's open/close behaviour.
-   ========================================================================== */
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Technology | How Artificial Daylight Works | Zenith SkyTech</title>
+  <meta name="description" content="How YuerSky artificial daylight technology recreates the natural daylight spectrum — explained, compared, and specified for UK architects and designers.">
 
-(function () {
-  'use strict';
+  <meta property="og:title" content="The Technology | How Artificial Daylight Works | Zenith SkyTech">
+  <meta property="og:description" content="How YuerSky artificial daylight technology recreates the natural daylight spectrum — explained, compared, and specified for UK architects and designers.">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#0A0E14">
 
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
+  <link rel="canonical" href="https://www.zenith-sky.com/technology.html">
 
-  /* ------------------------------------------------------------------------
-     1. STICKY HEADER
-     Adds .is-scrolled once the user has scrolled past 80px, matching the
-     Design System's "Scrolled" nav variant. Uses a scroll listener guarded
-     by requestAnimationFrame to avoid layout thrashing.
-     ------------------------------------------------------------------------ */
-  var header = document.getElementById('site-header');
-  var scrollTicking = false;
+  <link rel="stylesheet" href="styles.css">
 
-  function updateHeaderState() {
-    if (window.scrollY > 80) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
-    scrollTicking = false;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Technology | How Artificial Daylight Works",
+    "about": { "@type": "Organization", "name": "Zenith SkyTech" },
+    "description": "How YuerSky artificial daylight technology recreates the natural daylight spectrum."
   }
+  </script>
+</head>
+<body>
 
-  window.addEventListener('scroll', function () {
-    if (!scrollTicking) {
-      window.requestAnimationFrame(updateHeaderState);
-      scrollTicking = true;
-    }
-  }, { passive: true });
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  // Set initial state in case the page loads already scrolled (e.g. anchor link)
-  updateHeaderState();
+  <!-- ============================================================
+       HEADER / PRIMARY NAVIGATION — shared across every page
+  ============================================================= -->
+  <header class="site-header" id="site-header">
+    <div class="container site-header__inner">
+      <a href="/" class="site-header__logo" aria-label="Zenith SkyTech home">
+        <img src="/assets/icons/logo-zenith-skytech.png" alt="Zenith SkyTech" width="180" height="40">
+      </a>
 
-  /* ------------------------------------------------------------------------
-     2. MOBILE NAVIGATION OVERLAY
-     Toggles the full-screen overlay, manages aria-expanded/aria-hidden,
-     traps focus while open, and restores focus to the toggle on close.
-     ------------------------------------------------------------------------ */
-  var navToggle = document.getElementById('nav-toggle');
-  var mobileNav = document.getElementById('mobile-nav');
-  var mobileNavLinks = mobileNav.querySelectorAll('a, button');
+      <nav class="primary-nav" aria-label="Primary">
+        <ul class="primary-nav__list">
+          <li><a href="/technology.html" class="is-current-link">The Technology</a></li>
+          <li class="has-submenu">
+            <button class="submenu-trigger" aria-expanded="false" aria-controls="applications-menu">
+              Applications
+              <svg class="chevron" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="submenu" id="applications-menu">
+              <a href="/applications/basements-lower-ground.html">Basements &amp; Lower Ground</a>
+              <a href="/applications/windowless-interior-rooms.html">Windowless Interior Rooms</a>
+              <a href="/applications/commercial-workplace-interiors.html">Commercial &amp; Workplace Interiors</a>
+              <a href="/applications.html" class="submenu__all">View all Applications</a>
+            </div>
+          </li>
+          <li><a href="/projects.html">Projects</a></li>
+          <li><a href="/for-trade-specifiers.html">For Trade &amp; Specifiers</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </nav>
 
-  function openMobileNav() {
-    mobileNav.classList.add('is-open');
-    mobileNav.setAttribute('aria-hidden', 'false');
-    navToggle.setAttribute('aria-expanded', 'true');
-    navToggle.setAttribute('aria-label', 'Close menu');
-    document.body.style.overflow = 'hidden';
-    if (mobileNavLinks.length) mobileNavLinks[0].focus();
-  }
+      <div class="site-header__actions">
+        <a href="/become-a-showroom-partner.html" class="btn btn--secondary btn--small">Become a Partner</a>
+        <a href="/contact.html" class="btn btn--primary btn--small">Enquire</a>
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-  function closeMobileNav() {
-    mobileNav.classList.remove('is-open');
-    mobileNav.setAttribute('aria-hidden', 'true');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'Open menu');
-    document.body.style.overflow = '';
-    navToggle.focus();
-  }
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <nav aria-label="Mobile primary">
+      <ul class="mobile-nav__list">
+        <li><a href="/technology.html">The Technology</a></li>
+        <li><a href="/applications.html">Applications</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/for-trade-specifiers.html">For Trade &amp; Specifiers</a></li>
+        <li><a href="/about.html">About</a></li>
+      </ul>
+      <div class="mobile-nav__actions">
+        <a href="/become-a-showroom-partner.html" class="btn btn--secondary btn--full">Become a Partner</a>
+        <a href="/contact.html" class="btn btn--primary btn--full">Enquire</a>
+      </div>
+    </nav>
+  </div>
 
-  navToggle.addEventListener('click', function () {
-    var isOpen = mobileNav.classList.contains('is-open');
-    if (isOpen) { closeMobileNav(); } else { openMobileNav(); }
-  });
+  <main id="main-content">
 
-  // Close on Escape, and trap Tab focus within the overlay while open
-  document.addEventListener('keydown', function (e) {
-    if (!mobileNav.classList.contains('is-open')) return;
+    <!-- ============================================================
+         1. HERO
+         CMS: Site_Settings — hero_headline
+    ============================================================= -->
+    <section class="hero hero--partner" aria-label="Introduction">
+      <div class="hero__media">
+        <img
+          src="/assets/images/hero-technology.jpg"
+          alt="Close, technical view of the artificial daylight fitting recessed into a ceiling, light spreading across the room below"
+          width="1920" height="1080"
+          class="hero__image">
+        <div class="hero__scrim" aria-hidden="true"></div>
+      </div>
+      <div class="container hero__content">
+        <p class="eyebrow">The Technology</p>
+        <h1 class="hero__headline hero__headline--partner">Optical daylight recreation, explained.</h1>
+        <p class="hero__subhead">This is genuine daylight-spectrum technology, not a warm-white LED panel with a flattering name. Here's how it actually works.</p>
+      </div>
+    </section>
 
-    if (e.key === 'Escape') {
-      closeMobileNav();
-      return;
-    }
+    <!-- ============================================================
+         2. THE PROBLEM
+    ============================================================= -->
+    <section class="statement" data-reveal>
+      <div class="container statement__inner">
+        <p class="eyebrow">The Problem</p>
+        <h2 class="statement__heading">Some spaces will never see daylight. Until now, that was permanent.</h2>
+        <p class="statement__body">Basements, internal rooms, deep-plan offices — any space where the architecture itself rules out a window. No amount of clever standard lighting changes that; a warmer bulb still isn't daylight. Artificial daylight technology exists specifically to solve the spaces that conventional lighting can't.</p>
+      </div>
+    </section>
 
-    if (e.key === 'Tab' && mobileNavLinks.length) {
-      var first = mobileNavLinks[0];
-      var last = mobileNavLinks[mobileNavLinks.length - 1];
+    <!-- ============================================================
+         3. HOW IT WORKS
+         Written at a general/conceptual level — exact certified figures
+         (spectrum data, CRI, lumen output) are pending confirmation from
+         YuerSky and are deliberately not invented here. See developer
+         notes at the end of this build for what's outstanding.
+    ============================================================= -->
+    <section class="how-it-works" data-reveal>
+      <div class="container how-it-works__inner">
+        <div class="how-it-works__text">
+          <p class="eyebrow">How It Works</p>
+          <h2>Light, engineered to behave like daylight — not just look like it.</h2>
+          <p>Most "daylight" lighting products are really just a warmer-toned LED — a single fixed colour temperature that resembles daylight at one moment, in one condition, and never changes. That's a lighting trick, not daylight.</p>
+          <p>Artificial daylight technology works differently. Rather than emitting one fixed tone, the system is engineered to reproduce a fuller spread of the visible daylight spectrum — the mix of wavelengths your eyes actually associate with real sky light, rather than a single flattering colour. Some systems are also able to shift gradually through the day, echoing the way real daylight itself changes from morning through to evening, rather than staying static from the moment it's switched on.</p>
+          <p>The result a room experiences isn't "brighter lighting" — it's light that reads, both visually and physiologically, as daylight, even in a space that structurally could never have a window.</p>
+        </div>
+        <div class="how-it-works__media">
+          <img
+            src="/assets/images/technology-cutaway-diagram.svg"
+            alt="Technical cutaway diagram showing the optical daylight module recessed into a ceiling void, with light spectrum annotations"
+            width="640" height="640"
+            loading="lazy">
+        </div>
+      </div>
+    </section>
 
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-  });
+    <!-- ============================================================
+         4. COMPARISON TABLE
+         Qualitative comparison only — exact certified figures (CRI,
+         lumen output, kWh running cost) pending from YuerSky.
+         CMS: Comparison_Table worksheet
+    ============================================================= -->
+    <section class="comparison" data-reveal>
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">How It Compares</p>
+          <h2>Artificial daylight vs. the alternatives.</h2>
+        </div>
+        <div class="comparison__table-wrap">
+          <table class="comparison__table">
+            <thead>
+              <tr>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">Artificial Daylight</th>
+                <th scope="col">Standard LED Panel</th>
+                <th scope="col">Real Skylight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Spectrum</th>
+                <td>Engineered to reproduce a fuller daylight spectrum</td>
+                <td>Single fixed colour temperature</td>
+                <td>True natural daylight</td>
+              </tr>
+              <tr>
+                <th scope="row">Changes through the day</th>
+                <td>Available on systems designed to shift, echoing natural daylight</td>
+                <td>No — static once installed</td>
+                <td>Yes — naturally</td>
+              </tr>
+              <tr>
+                <th scope="row">Works with no window</th>
+                <td>Yes — this is what it's designed for</td>
+                <td>Yes, but reads as artificial light, not daylight</td>
+                <td>No — requires an aperture to the sky</td>
+              </tr>
+              <tr>
+                <th scope="row">Structural work required</th>
+                <td>Ceiling void install — no external structural opening</td>
+                <td>Minimal — standard fitting</td>
+                <td>Significant — roof/structural opening</td>
+              </tr>
+              <tr>
+                <th scope="row">Weather &amp; time-of-day dependent</th>
+                <td>No — consistent year-round</td>
+                <td>No — consistent year-round</td>
+                <td>Yes — varies with weather, season, time of day</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="comparison__note">Exact certified figures — colour rendering index, lumen output, running cost — are confirmed manufacturer data and available in the full specification pack, rather than published here in general terms.</p>
+      </div>
+    </section>
 
-  // Close the overlay automatically if a link inside it is followed
-  mobileNavLinks.forEach(function (link) {
-    link.addEventListener('click', closeMobileNav);
-  });
+    <!-- ============================================================
+         5. FAQ / ACCORDION
+         CMS: Technology_FAQ worksheet
+    ============================================================= -->
+    <section class="faq" data-reveal>
+      <div class="container faq__inner">
+        <div class="section-heading section-heading--center">
+          <p class="eyebrow">Common Questions</p>
+          <h2>Questions we hear most.</h2>
+        </div>
+        <div class="accordion">
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" aria-expanded="false">
+                <span>Is this just a bright LED light?</span>
+                <svg class="accordion__icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>No. Standard LED lighting is designed to illuminate a room; this technology is engineered specifically to reproduce the daylight spectrum, not just raise brightness. Brightness alone doesn't make a room feel daylit — the spectrum and quality of the light is what does that.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" aria-expanded="false">
+                <span>Will it actually affect how a room feels, not just look brighter?</span>
+                <svg class="accordion__icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>That's the specific point of the technology — daylight-spectrum light is widely understood to affect mood and alertness differently to standard artificial lighting, which is exactly why the distinction between "bright" and "daylight" matters for windowless spaces.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" aria-expanded="false">
+                <span>Can it be retrofitted into an existing ceiling?</span>
+                <svg class="accordion__icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>In most cases, yes, subject to available ceiling void depth — this is exactly the kind of project-specific detail our specification pack and technical support are for. Get in touch with your room or ceiling details and we'll confirm feasibility directly.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" aria-expanded="false">
+                <span>How does it compare to a traditional rooflight or sun tunnel?</span>
+                <svg class="accordion__icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>A rooflight or sun tunnel still needs a physical route to the sky — a roof opening and a clear run down through the building. Artificial daylight technology needs neither, which is exactly what makes it viable for basements, internal rooms and any space with no access to the roof or an external wall.</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <h3>
+              <button class="accordion__trigger" aria-expanded="false">
+                <span>What's the running cost?</span>
+                <svg class="accordion__icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </h3>
+            <div class="accordion__panel">
+              <p>This depends on the specific system and installation size, so we'd rather give you an accurate figure than a generic estimate — it's included as standard in every specification pack.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  /* ------------------------------------------------------------------------
-     3. SCROLL-REVEAL
-     Design System §7.2: fade-up once at ~20% visibility, never re-triggers.
-     Skipped entirely under prefers-reduced-motion — content is simply
-     visible immediately (handled by the CSS media query), so this observer
-     doesn't even need to run in that case.
-     ------------------------------------------------------------------------ */
-  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-    var revealTargets = document.querySelectorAll('[data-reveal]');
+    <!-- ============================================================
+         6. CONVERSION BLOCK
+    ============================================================= -->
+    <section class="about-cta" data-reveal>
+      <div class="container about-cta__inner">
+        <h2>Get the full technical specification.</h2>
+        <a href="/for-trade-specifiers.html" class="btn btn--primary">Request a Specification Pack</a>
+      </div>
+    </section>
 
-    var revealObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.2
-    });
+  </main>
 
-    revealTargets.forEach(function (target) {
-      revealObserver.observe(target);
-    });
-  } else {
-    // No IntersectionObserver support, or motion is reduced: show immediately.
-    document.querySelectorAll('[data-reveal]').forEach(function (target) {
-      target.classList.add('is-visible');
-    });
-  }
+  <!-- ============================================================
+       FOOTER — shared across every page
+  ============================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__strapline">UK warranty. UK servicing. UK specification support — backed by an exclusive partnership with YuerSky.</p>
 
-  /* ------------------------------------------------------------------------
-     Footer year — small enhancement, avoids a stale hard-coded year.
-     ------------------------------------------------------------------------ */
-  /* ------------------------------------------------------------------------
-     4. PARTNER ENQUIRY FORM (Netlify Forms)
-     The form works with zero JavaScript — a plain HTML POST to Netlify's
-     form-handling endpoint, which redirects to a generic success page.
-     This block is progressive enhancement only: if present, it intercepts
-     the submit, posts the same data via fetch, and swaps in an inline
-     success message instead of a full page navigation. If JS fails or is
-     disabled, the native form submission above still works correctly.
-     ------------------------------------------------------------------------ */
-  var partnerForm = document.getElementById('partner-form');
+      <div class="site-footer__grid">
+        <div class="site-footer__column">
+          <h2 class="site-footer__heading">Company</h2>
+          <ul>
+            <li><a href="/about.html">About &amp; The Partnership</a></li>
+            <li><a href="/about.html#press">Press &amp; Media</a></li>
+            <li><a href="/become-a-showroom-partner.html">Become a Partner</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__column">
+          <h2 class="site-footer__heading">Professionals</h2>
+          <ul>
+            <li><a href="/technology.html">The Technology</a></li>
+            <li><a href="/applications.html">Applications</a></li>
+            <li><a href="/for-trade-specifiers.html">For Trade &amp; Specifiers</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__column">
+          <h2 class="site-footer__heading">Projects &amp; Products</h2>
+          <ul>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="/products.html">Products</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__column">
+          <h2 class="site-footer__heading">Legal</h2>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="/cookies.html">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
 
-  if (partnerForm) {
-    var formStatus = document.getElementById('form-status');
+      <div class="site-footer__bottom">
+        <a href="/" class="site-footer__logo" aria-label="Zenith SkyTech home">
+          <img src="/assets/icons/logo-zenith-skytech.png" alt="Zenith SkyTech" width="140" height="32">
+        </a>
+        <p>&copy; <span id="current-year">2026</span> Zenith SkyTech. Official UK &amp; Ireland partner of YuerSky.</p>
+      </div>
+    </div>
+  </footer>
 
-    function encodeFormData(form) {
-      var data = new FormData(form);
-      return Array.from(data.entries())
-        .map(function (pair) {
-          return encodeURIComponent(pair[0]) + '=' + encodeURIComponent(pair[1]);
-        })
-        .join('&');
-    }
+  <div class="mobile-action-bar" aria-hidden="true">
+    <a href="/become-a-showroom-partner.html" class="btn btn--secondary btn--full">Become a Partner</a>
+    <a href="/contact.html" class="btn btn--primary btn--full">Enquire</a>
+  </div>
 
-    partnerForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      var submitButton = partnerForm.querySelector('button[type="submit"]');
-      submitButton.disabled = true;
-      formStatus.textContent = 'Sending…';
-      formStatus.classList.remove('is-error');
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeFormData(partnerForm)
-      })
-        .then(function (response) {
-          if (!response.ok) throw new Error('Network response was not OK');
-          partnerForm.reset();
-          partnerForm.hidden = true;
-          formStatus.textContent = 'Thank you — we\u2019ve received your enquiry and a member of the Zenith SkyTech team will be in touch shortly.';
-        })
-        .catch(function () {
-          formStatus.textContent = 'Something went wrong sending that — please try again, or email us directly.';
-          formStatus.classList.add('is-error');
-          submitButton.disabled = false;
-        });
-    });
-  }
-
-  /* ------------------------------------------------------------------------
-     5. ACCORDION (FAQ)
-     Single-open behaviour: opening one item closes any other that's open.
-     Height is animated via max-height (set inline in px on open, reset to
-     0 on close) rather than the CSS 'auto' keyword, since browsers can't
-     transition to/from 'auto' — this is the standard workaround.
-     Fully keyboard-operable via native <button> semantics; aria-expanded
-     is the single source of truth for open/closed state.
-     ------------------------------------------------------------------------ */
-  var accordionItems = document.querySelectorAll('.accordion__item');
-
-  accordionItems.forEach(function (item) {
-    var trigger = item.querySelector('.accordion__trigger');
-    var panel = item.querySelector('.accordion__panel');
-    if (!trigger || !panel) return;
-
-    trigger.addEventListener('click', function () {
-      var isOpen = trigger.getAttribute('aria-expanded') === 'true';
-
-      // Close any other open item first (single-open behaviour)
-      accordionItems.forEach(function (other) {
-        if (other === item) return;
-        var otherTrigger = other.querySelector('.accordion__trigger');
-        var otherPanel = other.querySelector('.accordion__panel');
-        if (otherTrigger && otherTrigger.getAttribute('aria-expanded') === 'true') {
-          otherTrigger.setAttribute('aria-expanded', 'false');
-          otherPanel.style.maxHeight = '';
-        }
-      });
-
-      if (isOpen) {
-        trigger.setAttribute('aria-expanded', 'false');
-        panel.style.maxHeight = '';
-      } else {
-        trigger.setAttribute('aria-expanded', 'true');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-      }
-    });
-  });
-
-})();
+  <script src="script.js"></script>
+</body>
+</html>
