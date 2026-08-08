@@ -248,7 +248,7 @@ section {
   height: var(--header-height);
 }
 
-.site-header__logo img { height: 80px; width: auto; }
+.site-header__logo img { height: 32px; width: auto; }
 
 .primary-nav { display: none; }
 
@@ -723,7 +723,7 @@ section {
 @media (min-width: 768px) {
   .site-footer__bottom { flex-direction: row; align-items: center; justify-content: space-between; }
 }
-.site-footer__logo img { height: 96px; width: auto; opacity: 0.8; }
+.site-footer__logo img { height: 24px; width: auto; opacity: 0.8; }
 
 /* --------------------------------------------------------------------------
    17. PARTNER PAGE — HERO VARIANT
@@ -968,3 +968,125 @@ section {
   gap: var(--space-3);
 }
 .about-cta__inner h2 { font-size: 22px; }
+
+/* --------------------------------------------------------------------------
+   27. HOW IT WORKS (Technology page) — reuses split-feature layout pattern
+   -------------------------------------------------------------------------- */
+.how-it-works__inner {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+.how-it-works__text p { color: var(--color-slate); font-size: 17px; margin-bottom: var(--space-2); }
+.how-it-works__text h2 { font-size: 28px; margin-bottom: var(--space-3); }
+.how-it-works__media {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+}
+.how-it-works__media img { margin-inline: auto; }
+@media (min-width: 960px) {
+  .how-it-works__inner { grid-template-columns: 1fr 1fr; gap: var(--space-12); }
+  .how-it-works__text h2 { font-size: 36px; }
+}
+
+/* --------------------------------------------------------------------------
+   28. COMPARISON TABLE — Mono-typeset, deliberately plain/data-like styling,
+   never dressed up as marketing content (Design System §8.1).
+   -------------------------------------------------------------------------- */
+.comparison__table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  -webkit-overflow-scrolling: touch;
+}
+.comparison__table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--color-surface);
+}
+.comparison__table th,
+.comparison__table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+.comparison__table thead th {
+  color: var(--color-ink);
+  font-weight: 600;
+  background: var(--color-surface-raised);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.comparison__table tbody th {
+  color: var(--color-ink);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.comparison__table td { color: var(--color-slate); line-height: 1.5; }
+.comparison__table tbody tr:last-child th,
+.comparison__table tbody tr:last-child td { border-bottom: none; }
+.comparison__table tbody tr td:first-of-type,
+.comparison__table thead th:nth-child(2) {
+  color: var(--color-skylight);
+}
+.comparison__note {
+  margin-top: var(--space-3);
+  font-size: 13px;
+  color: var(--color-slate);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   29. ACCORDION (FAQ) — single-open behaviour driven by script.js,
+   full keyboard/disclosure semantics.
+   -------------------------------------------------------------------------- */
+.faq__inner { max-width: 760px; margin-inline: auto; }
+.accordion__item {
+  border-bottom: 1px solid var(--color-border);
+}
+.accordion__item h3 { margin: 0; }
+.accordion__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.accordion__icon {
+  flex-shrink: 0;
+  color: var(--color-blue);
+  transition: transform var(--duration-standard) var(--ease-standard);
+}
+.accordion__trigger[aria-expanded="true"] .accordion__icon { transform: rotate(45deg); }
+.accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-reveal) var(--ease-standard);
+}
+.accordion__panel p {
+  color: var(--color-slate);
+  font-size: 15px;
+  padding-bottom: var(--space-3);
+  max-width: 620px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .accordion__panel { transition: none; }
+}
+
+/* --------------------------------------------------------------------------
+   30. Current-page nav indicator (lightweight, text-only — used sparingly)
+   -------------------------------------------------------------------------- */
+.is-current-link { color: var(--color-blue); }
