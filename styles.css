@@ -248,7 +248,7 @@ section {
   height: var(--header-height);
 }
 
-.site-header__logo img { height: 80px; width: auto; }
+.site-header__logo img { height: 32px; width: auto; }
 
 .primary-nav { display: none; }
 
@@ -723,7 +723,7 @@ section {
 @media (min-width: 768px) {
   .site-footer__bottom { flex-direction: row; align-items: center; justify-content: space-between; }
 }
-.site-footer__logo img { height: 96px; width: auto; opacity: 0.8; }
+.site-footer__logo img { height: 24px; width: auto; opacity: 0.8; }
 
 /* --------------------------------------------------------------------------
    17. PARTNER PAGE — HERO VARIANT
@@ -874,3 +874,97 @@ section {
   min-height: 20px;
 }
 .form__status.is-error { color: #E8846B; }
+
+/* --------------------------------------------------------------------------
+   23. UK COMMITMENT LIST (About page)
+   -------------------------------------------------------------------------- */
+.commitment__inner { max-width: 760px; margin-inline: auto; }
+.commitment__list { display: flex; flex-direction: column; gap: var(--space-4); }
+.commitment__list li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+.commitment__status {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+.commitment__status--live {
+  color: var(--color-skylight);
+  border: 1px solid rgba(127, 178, 255, 0.4);
+  background: rgba(127, 178, 255, 0.08);
+}
+.commitment__status--planned {
+  color: var(--color-slate);
+  border: 1px solid var(--color-border);
+}
+.commitment__list h3 { font-size: 18px; margin-bottom: 4px; }
+.commitment__list p { font-size: 14px; color: var(--color-slate); }
+
+/* --------------------------------------------------------------------------
+   24. TEAM
+   Single-member layout: a featured card, not a sparse multi-column grid —
+   the grid pattern returns naturally once the Team worksheet has more rows.
+   -------------------------------------------------------------------------- */
+.team__card {
+  max-width: 640px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+}
+.team__photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+}
+.team__role {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-blue);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-2);
+}
+.team__bio { color: var(--color-slate); font-size: 15px; max-width: 520px; }
+
+@media (min-width: 640px) {
+  .team__card { flex-direction: row; text-align: left; align-items: flex-start; padding: var(--space-6); }
+  .team__photo { flex-shrink: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   25. STATEMENT LINK (used within statement__body, e.g. Press & Media)
+   -------------------------------------------------------------------------- */
+.statement__link { color: var(--color-blue); border-bottom: 1px solid transparent; }
+.statement__link:hover { border-bottom-color: var(--color-blue); }
+
+/* --------------------------------------------------------------------------
+   26. ABOUT CTA — deliberately secondary weight, per UX Blueprint rationale:
+   About's job is credibility, not conversion.
+   -------------------------------------------------------------------------- */
+.about-cta { background: var(--color-surface); border-top: 1px solid var(--color-border); }
+.about-cta__inner {
+  max-width: 560px;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+.about-cta__inner h2 { font-size: 22px; }
