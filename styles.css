@@ -248,7 +248,7 @@ section {
   height: var(--header-height);
 }
 
-.site-header__logo img { height: 80px; width: auto; }
+.site-header__logo img { height: 32px; width: auto; }
 
 .primary-nav { display: none; }
 
@@ -723,7 +723,7 @@ section {
 @media (min-width: 768px) {
   .site-footer__bottom { flex-direction: row; align-items: center; justify-content: space-between; }
 }
-.site-footer__logo img { height: 96px; width: auto; opacity: 0.8; }
+.site-footer__logo img { height: 24px; width: auto; opacity: 0.8; }
 
 /* --------------------------------------------------------------------------
    17. PARTNER PAGE — HERO VARIANT
@@ -737,6 +737,8 @@ section {
    its left/right edges to fill it. Keeping the box closer to the
    photo's natural landscape shape preserves far more of the image. */
 .hero--partner {
+  width: 100%;
+  max-width: 100%;
   aspect-ratio: 4 / 3;
   min-height: 420px;
 }
@@ -1086,4 +1088,7 @@ section {
   .accordion__panel { transition: none; }
 }
 
-
+/* --------------------------------------------------------------------------
+   30. Current-page nav indicator (lightweight, text-only — used sparingly)
+   -------------------------------------------------------------------------- */
+.is-current-link { color: var(--color-blue); }
