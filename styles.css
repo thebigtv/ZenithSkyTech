@@ -248,7 +248,7 @@ section {
   height: var(--header-height);
 }
 
-.site-header__logo img { height: 32px; width: auto; }
+.site-header__logo img { height: 80px; width: auto; }
 
 .primary-nav { display: none; }
 
@@ -723,7 +723,7 @@ section {
 @media (min-width: 768px) {
   .site-footer__bottom { flex-direction: row; align-items: center; justify-content: space-between; }
 }
-.site-footer__logo img { height: 24px; width: auto; opacity: 0.8; }
+.site-footer__logo img { height: 96px; width: auto; opacity: 0.8; }
 
 /* --------------------------------------------------------------------------
    17. PARTNER PAGE — HERO VARIANT
