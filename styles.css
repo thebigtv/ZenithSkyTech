@@ -1090,4 +1090,20 @@ section {
    30. Current-page nav indicator (lightweight, text-only — used sparingly)
    -------------------------------------------------------------------------- */
 .is-current-link { color: var(--color-blue); }
- 
+ /* --------------------------------------------------------------------------
+   31. TOP-ANCHORED HERO CONTENT
+   For hero images with their own caption text baked into the lower
+   portion (e.g. a manufacturer render), so our headline doesn't sit on
+   top of it.
+   -------------------------------------------------------------------------- */
+.hero--content-top { align-items: flex-start; }
+.hero--content-top .hero__content {
+  padding-top: 120px;
+  padding-bottom: var(--space-4);
+}
+.hero--content-top .hero__scrim {
+  background: linear-gradient(to bottom, rgba(10,14,20,0.85) 0%, rgba(10,14,20,0.15) 30%, rgba(10,14,20,0) 50%, rgba(10,14,20,0) 100%);
+}
+@media (min-width: 960px) {
+  .hero--content-top .hero__content { padding-top: 160px; }
+}
