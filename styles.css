@@ -232,7 +232,7 @@ section {
   background: transparent;
   transition: background-color var(--duration-standard) var(--ease-standard),
               border-color var(--duration-standard) var(--ease-standard);
-  border-bottom: 1px solid transparent;
+  border-bottom: 10px solid transparent;
 }
 
 .site-header.is-scrolled {
