@@ -138,32 +138,34 @@
      Footer year — small enhancement, avoids a stale hard-coded year.
      ------------------------------------------------------------------------ */
   /* ------------------------------------------------------------------------
-     4. PARTNER ENQUIRY FORM (Netlify Forms)
-     The form works with zero JavaScript — a plain HTML POST to Netlify's
+     4. NETLIFY FORMS — AJAX PROGRESSIVE ENHANCEMENT
+     Every form works with zero JavaScript — a plain HTML POST to Netlify's
      form-handling endpoint, which redirects to a generic success page.
-     This block is progressive enhancement only: if present, it intercepts
-     the submit, posts the same data via fetch, and swaps in an inline
-     success message instead of a full page navigation. If JS fails or is
-     disabled, the native form submission above still works correctly.
+     This block is progressive enhancement only: for each [data-netlify]
+     form found on the page, it intercepts the submit, posts the same data
+     via fetch, and swaps in an inline success message instead of a full
+     page navigation. If JS fails or is disabled, the native form
+     submission still works correctly. Generalized to run on however many
+     Netlify forms exist on a given page (each page has at most one today,
+     but this scopes correctly per-form regardless).
      ------------------------------------------------------------------------ */
-  var partnerForm = document.getElementById('partner-form');
+  function encodeFormData(form) {
+    var data = new FormData(form);
+    return Array.from(data.entries())
+      .map(function (pair) {
+        return encodeURIComponent(pair[0]) + '=' + encodeURIComponent(pair[1]);
+      })
+      .join('&');
+  }
 
-  if (partnerForm) {
-    var formStatus = document.getElementById('form-status');
+  document.querySelectorAll('form[data-netlify]').forEach(function (netlifyForm) {
+    var formStatus = netlifyForm.querySelector('.form__status');
+    if (!formStatus) return;
 
-    function encodeFormData(form) {
-      var data = new FormData(form);
-      return Array.from(data.entries())
-        .map(function (pair) {
-          return encodeURIComponent(pair[0]) + '=' + encodeURIComponent(pair[1]);
-        })
-        .join('&');
-    }
-
-    partnerForm.addEventListener('submit', function (e) {
+    netlifyForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      var submitButton = partnerForm.querySelector('button[type="submit"]');
+      var submitButton = netlifyForm.querySelector('button[type="submit"]');
       submitButton.disabled = true;
       formStatus.textContent = 'Sending…';
       formStatus.classList.remove('is-error');
@@ -171,12 +173,12 @@
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeFormData(partnerForm)
+        body: encodeFormData(netlifyForm)
       })
         .then(function (response) {
           if (!response.ok) throw new Error('Network response was not OK');
-          partnerForm.reset();
-          partnerForm.hidden = true;
+          netlifyForm.reset();
+          netlifyForm.hidden = true;
           formStatus.textContent = 'Thank you — we\u2019ve received your enquiry and a member of the Zenith SkyTech team will be in touch shortly.';
         })
         .catch(function () {
@@ -185,7 +187,7 @@
           submitButton.disabled = false;
         });
     });
-  }
+  });
 
   /* ------------------------------------------------------------------------
      5. ACCORDION (FAQ)
