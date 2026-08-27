@@ -1156,3 +1156,17 @@ section {
 @media (min-width: 960px) {
   .hero__badge { max-width: 400px; }
 }
+
+/* --------------------------------------------------------------------------
+   35. PROCESS STEPS — number badges reusing the commitment list layout
+   (Services page's 7-step process)
+   -------------------------------------------------------------------------- */
+.process-steps__number {
+  color: var(--color-blue);
+  border-color: rgba(59, 111, 224, 0.4);
+  background: rgba(59, 111, 224, 0.08);
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  min-width: 34px;
+  text-align: center;
+}
