@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Trade & Specifiers | Zenith SkyTech</title>
-  <meta name="description" content="Specification packs, technical documentation and direct trade support for architects, designers and contractors specifying YuerSky artificial daylight technology.">
+  <title>Contact | Zenith SkyTech</title>
+  <meta name="description" content="Enquire about artificial daylight technology for your space — Zenith SkyTech, official UK & Ireland partner of YuerSky.">
 
-  <meta property="og:title" content="For Trade & Specifiers | Zenith SkyTech">
-  <meta property="og:description" content="Specification packs, technical documentation and direct trade support for architects, designers and contractors.">
+  <meta property="og:title" content="Contact | Zenith SkyTech">
+  <meta property="og:description" content="Enquire about artificial daylight technology for your space.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0A0E14">
 
   <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
-  <link rel="canonical" href="https://www.zenith-sky.com/for-trade-specifiers.html">
+  <link rel="canonical" href="https://www.zenith-sky.com/contact.html">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -34,6 +34,172 @@
               <svg class="chevron" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="submenu" id="applications-menu">
+              <a href="/applications/basements-lower-ground.html">Basements &amp; Lower Ground</a>
+              <a href="/applications/windowless-interior-rooms.html">Windowless Interior Rooms</a>
+              <a href="/applications/commercial-workplace-interiors.html">Commercial &amp; Workplace Interiors</a>
+              <a href="/applications.html" class="submenu__all">View all Applications</a>
+            </div>
+          </li>
+          <li><a href="/projects.html">Projects</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/for-trade-specifiers.html">For Trade &amp; Specifiers</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a href="/become-a-showroom-partner.html" class="btn btn--secondary btn--small">Become a Partner</a>
+        <a href="/contact.html" class="btn btn--primary btn--small">Enquire</a>
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <nav aria-label="Mobile primary">
+      <ul class="mobile-nav__list">
+        <li><a href="/technology.html">The Technology</a></li>
+        <li><a href="/applications.html">Applications</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/for-trade-specifiers.html">For Trade &amp; Specifiers</a></li>
+        <li><a href="/about.html">About</a></li>
+      </ul>
+      <div class="mobile-nav__actions">
+        <a href="/become-a-showroom-partner.html" class="btn btn--secondary btn--full">Become a Partner</a>
+        <a href="/contact.html" class="btn btn--primary btn--full">Enquire</a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main-content">
+
+    <!-- 1. HERO -->
+    <section class="statement" data-reveal style="padding-top:calc(var(--header-height) + var(--space-8));">
+      <div class="container statement__inner">
+        <p class="eyebrow">Contact</p>
+        <h1 class="statement__heading">Enquire about your space.</h1>
+        <p class="statement__body">Tell us a little about what you're exploring, and a real person on the Zenith SkyTech team will get back to you directly.</p>
+      </div>
+    </section>
+
+    <!-- 2. QUICK REDIRECT FOR ALREADY-SEGMENTED VISITORS -->
+    <section class="criteria" data-reveal>
+      <div class="container criteria__inner" style="text-align:center;">
+        <p class="coming-soon__body" style="margin-bottom:var(--space-3);">Already know exactly what you're after?</p>
+        <div style="display:flex; gap:var(--space-3); justify-content:center; flex-wrap:wrap;">
+          <a href="/become-a-showroom-partner.html" class="btn btn--secondary">Become a Showroom Partner</a>
+          <a href="/for-trade-specifiers.html" class="btn btn--secondary">Request a Specification Pack</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ENQUIRY FORM — lighter-touch than Partner/Trade forms -->
+    <section class="partner-form" data-reveal>
+      <div class="container partner-form__inner">
+        <div class="section-heading section-heading--center">
+          <p class="eyebrow">Get In Touch</p>
+          <h2>Send us a message.</h2>
+        </div>
+
+        <form
+          name="general-enquiry"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="form"
+          id="contact-form">
+
+          <input type="hidden" name="form-name" value="general-enquiry">
+          <p class="form__honeypot">
+            <label>Don't fill this out if you're human: <input name="bot-field"></label>
+          </p>
+
+          <div class="form__row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="Name" required autocomplete="name">
+          </div>
+
+          <div class="form__row-group">
+            <div class="form__row">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="Email" required autocomplete="email">
+            </div>
+            <div class="form__row">
+              <label for="phone">Phone <span class="form__optional">(optional)</span></label>
+              <input type="tel" id="phone" name="Phone" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form__row">
+            <label for="message">Tell us about your space</label>
+            <textarea id="message" name="Message" rows="4" required placeholder="Room type, what you're hoping to achieve — whatever gives us a starting point."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__strapline">UK warranty. UK servicing. UK specification support — backed by an exclusive partnership with YuerSky.</p>
+      <div class="site-footer__grid">
+        <div class="site-footer__column">
+          <h2 class="site-footer__heading">Company</h2>
+          <ul>
+            <li><a href="/about.html">About &amp; The Partnership</a></li>
+            <li><a href="/about.html#press">Press &amp; Media</a></li>
+            <li><a href="/become-a-showroom-partner.html">Become a Partner</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__column">
+          <h2 class="site-footer__heading">Professionals</h2>
+          <ul>
+            <li><a href="/technology.html">The Technology</a></li>
+            <li><a href="/applications.html">Applications</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/for-trade-specifiers.html">For Trade &amp; Specifiers</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__column">
+          <h2 class="site-footer__heading">Projects &amp; Products</h2>
+          <ul>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="/products.html">Products</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__column">
+          <h2 class="site-footer__heading">Legal</h2>
+          <ul>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="/cookies.html">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <a href="/" class="site-footer__logo" aria-label="Zenith SkyTech home">
+          <img src="/assets/icons/logo-zenith-skytech.png" alt="Zenith SkyTech" width="140" height="32">
+        </a>
+        <p>&copy; <span id="current-year">2026</span> Zenith SkyTech. Official UK &amp; Ireland partner of YuerSky.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-action-bar" aria-hidden="true">
+    <a href="/become-a-showroom-partner.html" class="btn btn--secondary btn--full">Become a Partner</a>
+    <a href="/contact.html" class="btn btn--primary btn--full">Enquire</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
               <a href="/applications/basements-lower-ground.html">Basements &amp; Lower Ground</a>
               <a href="/applications/windowless-interior-rooms.html">Windowless Interior Rooms</a>
               <a href="/applications/commercial-workplace-interiors.html">Commercial &amp; Workplace Interiors</a>
