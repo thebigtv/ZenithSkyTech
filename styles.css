@@ -299,22 +299,6 @@ section {
   padding: var(--space-2);
   flex-direction: column;
 }
-/* Invisible hover-bridge: the gap above (var(--space-2), from the
-   top:calc(100% + gap) offset) is real empty space that .has-submenu's
-   own hover box doesn't cover, since .submenu is position:absolute and
-   contributes no height to its parent. Without this, the cursor loses
-   :hover mid-transit crossing that gap and the menu closes before it's
-   reached. This pseudo-element sits exactly in that gap — same width as
-   the menu, no background/border, purely to keep the hover region
-   continuous. Visual appearance is unchanged; only the hit-area grows. */
-.submenu::before {
-  content: "";
-  position: absolute;
-  top: calc(-1 * var(--space-2));
-  left: 0;
-  right: 0;
-  height: var(--space-2);
-}
 .has-submenu:hover .submenu,
 .has-submenu:focus-within .submenu { display: flex; }
 
@@ -1185,4 +1169,27 @@ section {
   border-radius: 4px;
   min-width: 34px;
   text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   36. CONTACT PAGE — utility classes replacing inline styles
+   -------------------------------------------------------------------------- */
+/* For pages using .statement as the very first section (no photo hero) —
+   needs top padding to clear the fixed header, since there's no hero
+   section beneath it to absorb that space naturally. */
+.statement--first { padding-top: calc(var(--header-height) + var(--space-8)); }
+
+.criteria__inner--center { text-align: center; }
+
+.criteria__prompt {
+  color: var(--color-slate);
+  font-size: 17px;
+  margin-bottom: var(--space-3);
+}
+
+.criteria__prompt-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
 }
