@@ -299,6 +299,22 @@ section {
   padding: var(--space-2);
   flex-direction: column;
 }
+/* Invisible hover-bridge: the gap above (var(--space-2), from the
+   top:calc(100% + gap) offset) is real empty space that .has-submenu's
+   own hover box doesn't cover, since .submenu is position:absolute and
+   contributes no height to its parent. Without this, the cursor loses
+   :hover mid-transit crossing that gap and the menu closes before it's
+   reached. This pseudo-element sits exactly in that gap — same width as
+   the menu, no background/border, purely to keep the hover region
+   continuous. Visual appearance is unchanged; only the hit-area grows. */
+.submenu::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--space-2));
+  left: 0;
+  right: 0;
+  height: var(--space-2);
+}
 .has-submenu:hover .submenu,
 .has-submenu:focus-within .submenu { display: flex; }
 
