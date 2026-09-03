@@ -3,12 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | Zenith SkyTech</title>
-  <meta name="description" content="Projects — Zenith SkyTech, official UK &amp; Ireland partner of YuerSky artificial daylight technology.">
-  <meta name="robots" content="noindex">
+  <title>Projects Gallery | Zenith SkyTech</title>
+  <meta name="description" content="A gallery of YuerSky artificial daylight installations — real spaces, transformed by architectural daylight technology.">
+
+  <meta property="og:title" content="Projects Gallery | Zenith SkyTech">
+  <meta property="og:description" content="A gallery of YuerSky artificial daylight installations — real spaces, transformed by architectural daylight technology.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/hero-daylight-room.jpg">
   <meta name="theme-color" content="#0A0E14">
 
   <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
+  <link rel="canonical" href="https://www.zenith-sky.com/projects.html">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -35,7 +41,7 @@
               <a href="/applications.html" class="submenu__all">View all Applications</a>
             </div>
           </li>
-          <li><a href="/projects.html">Projects</a></li>
+          <li><a href="/projects.html" class="is-current-link">Projects</a></li>
           <li><a href="/services.html">Services</a></li>
           <li><a href="/for-trade-specifiers.html">For Trade &amp; Specifiers</a></li>
           <li><a href="/about.html">About</a></li>
@@ -70,14 +76,63 @@
   </div>
 
   <main id="main-content">
-    <section class="coming-soon">
-      <div class="container coming-soon__inner">
+
+    <!-- 1. INTRO -->
+    <section class="statement statement--first" data-reveal>
+      <div class="container statement__inner">
         <p class="eyebrow">Projects</p>
-        <h1>Our project gallery is on its way.</h1>
-        <p class="coming-soon__body">We're gathering real UK installations to show here — check back soon, or get in touch directly.</p>
-        <a href="/" class="btn btn--secondary">Back to Home</a>
+        <h1 class="statement__heading">A growing gallery of real installations.</h1>
+        <p class="statement__body">A look at YuerSky artificial daylight technology in real spaces — residential and commercial, across the UK.</p>
       </div>
     </section>
+
+    <!-- 2. GALLERY GRID -->
+    <section data-reveal>
+      <div class="container">
+        <div class="gallery-grid">
+          <!-- CMS: replace src on each figure below with an approved photo.
+               Filenames are deliberately generic (gallery-01 .. gallery-12)
+               so any approved image can go in any slot — no need to match
+               a specific room type to a specific filename. -->
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-01.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-02.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-03.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-04.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-05.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-06.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-07.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-08.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="/assets/images/gallery-09.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CONVERSION -->
+    <section class="about-cta" data-reveal>
+      <div class="container about-cta__inner">
+        <h2>Interested in your own space?</h2>
+        <a href="/contact.html" class="btn btn--secondary">Enquire About Your Space</a>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
