@@ -86,41 +86,15 @@
       </div>
     </section>
 
-    <!-- 2. GALLERY GRID -->
+    <!-- 2. GALLERY GRID
+         Populated at page-load from /data/gallery.json (see script.js,
+         section 6) rather than hardcoded here — this is what lets the
+         gallery be managed from /admin without touching this file. -->
     <section data-reveal>
       <div class="container">
-        <div class="gallery-grid">
-          <!-- CMS: replace src on each figure below with an approved photo.
-               Filenames are deliberately generic (gallery-01 .. gallery-12)
-               so any approved image can go in any slot — no need to match
-               a specific room type to a specific filename. -->
-          <figure class="gallery-item">
-            <img src="/assets/images/gallery-01.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
-          <figure class="gallery-item">
-            <img src="/assets/images/gallery-02.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
-          <figure class="gallery-item">
-            <img src="/assets/images/gallery-03.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
-          <figure class="gallery-item gallery-item--top">
-            <img src="/assets/images/gallery-04.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
-          <figure class="gallery-item">
-            <img src="/assets/images/gallery-05.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
-          <figure class="gallery-item">
-            <img src="/assets/images/gallery-06.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
-          <figure class="gallery-item gallery-item--top">
-            <img src="/assets/images/gallery-07.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
-          <figure class="gallery-item">
-            <img src="/assets/images/gallery-08.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
-          <figure class="gallery-item">
-            <img src="/assets/images/gallery-09.jpg" alt="YuerSky artificial daylight installation" width="600" height="450" loading="lazy">
-          </figure>
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Images inserted here by JS. If JS fails to load for any
+               reason, this section is simply empty rather than broken. -->
         </div>
       </div>
     </section>
