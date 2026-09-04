@@ -229,4 +229,43 @@
     });
   });
 
+  /* ------------------------------------------------------------------------
+     6. PROJECTS GALLERY (CMS-managed)
+     Only the Projects page has a #gallery-grid element, so this quietly
+     does nothing everywhere else. Fetches /data/gallery.json — the file
+     Decap CMS (at /admin) edits — and builds the figure/img elements from
+     it. Content managed via the CMS never requires a code change.
+     ------------------------------------------------------------------------ */
+  var galleryGrid = document.getElementById('gallery-grid');
+
+  if (galleryGrid) {
+    fetch('/data/gallery.json')
+      .then(function (response) {
+        if (!response.ok) throw new Error('Could not load gallery data');
+        return response.json();
+      })
+      .then(function (data) {
+        var images = data.images || [];
+        images.forEach(function (item) {
+          var figure = document.createElement('figure');
+          figure.className = 'gallery-item' + (item.cropTop ? ' gallery-item--top' : '');
+
+          var img = document.createElement('img');
+          img.src = item.image;
+          img.alt = item.alt || 'YuerSky artificial daylight installation';
+          img.width = 600;
+          img.height = 450;
+          img.loading = 'lazy';
+
+          figure.appendChild(img);
+          galleryGrid.appendChild(figure);
+        });
+      })
+      .catch(function () {
+        // Fails quietly — an empty gallery section is a much smaller
+        // problem than a broken page, and this only ever affects one
+        // section of one page.
+      });
+  }
+
 })();
