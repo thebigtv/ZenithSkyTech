@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded photos land, and the path the site uses to reference them.
+# Kept in a subfolder of the existing images directory so the CMS's
+# uploads never collide with the site's other hand-placed images.
+media_folder: "assets/images/gallery-uploads"
+public_folder: "/assets/images/gallery-uploads"
+
+collections:
+  - name: "gallery"
+    label: "Projects Gallery"
+    files:
+      - file: "data/gallery.json"
+        label: "Gallery Images"
+        name: "gallery"
+        fields:
+          - label: "Images"
+            name: "images"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+              - { label: "Description (for screen readers)", name: "alt", widget: "string", default: "YuerSky artificial daylight installation" }
+              - { label: "Crop from the top (use if the top of the photo — e.g. a ceiling fixture — is being cut off)", name: "cropTop", widget: "boolean", default: false, required: false }
