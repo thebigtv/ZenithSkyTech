@@ -1,0 +1,13 @@
+{
+  "images": [
+    { "image": "/assets/images/gallery-01.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": false },
+    { "image": "/assets/images/gallery-02.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": false },
+    { "image": "/assets/images/gallery-03.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": false },
+    { "image": "/assets/images/gallery-04.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": true },
+    { "image": "/assets/images/gallery-05.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": false },
+    { "image": "/assets/images/gallery-06.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": false },
+    { "image": "/assets/images/gallery-07.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": true },
+    { "image": "/assets/images/gallery-08.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": false },
+    { "image": "/assets/images/gallery-09.jpg", "alt": "YuerSky artificial daylight installation", "cropTop": false }
+  ]
+}
