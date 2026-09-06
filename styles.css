@@ -1267,3 +1267,26 @@ section {
    content at the top of the shot (e.g. a ceiling fixture) — anchors the
    crop to the top of the image instead of the centre. */
 .gallery-item--top img { object-position: top; }
+
+/* --------------------------------------------------------------------------
+   38. CATALOGUE VIEWER — served directly from the site (not a downloaded
+   file), so it works identically in every browser. Each page is a plain
+   image; lazy-loaded past the first two so the whole 36-page catalogue
+   doesn't load at once.
+   -------------------------------------------------------------------------- */
+.catalogue-actions { margin-top: var(--space-4); }
+
+.catalogue-viewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 760px;
+}
+.catalogue-page {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
