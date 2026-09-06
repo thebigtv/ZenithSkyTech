@@ -992,6 +992,7 @@ section {
   display: grid;
   gap: var(--space-6);
   align-items: center;
+  min-width: 0;
 }
 .how-it-works__text p { color: var(--color-slate); font-size: 17px; margin-bottom: var(--space-2); }
 .how-it-works__text h2 { font-size: 28px; margin-bottom: var(--space-3); }
@@ -1000,6 +1001,7 @@ section {
   border-radius: var(--radius-card);
   padding: var(--space-4);
   border: 1px solid var(--color-border);
+  min-width: 0;
 }
 .how-it-works__media img { margin-inline: auto; }
 @media (min-width: 960px) {
@@ -1008,50 +1010,69 @@ section {
 }
 
 /* --------------------------------------------------------------------------
-   28. COMPARISON TABLE — Mono-typeset, deliberately plain/data-like styling,
-   never dressed up as marketing content (Design System §8.1).
+   28. SPEC COMPARISON — three cards, matching the visual language used
+   everywhere else on the site (benefit cards, pillar grids) rather than
+   a plain data table. Icon + short caption per row, scannable at a
+   glance. The "Artificial Daylight" card is visually distinguished as
+   the option the page is arguing for.
    -------------------------------------------------------------------------- */
-.comparison__table-wrap {
-  overflow-x: auto;
+.spec-compare {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+@media (min-width: 768px) {
+  .spec-compare { grid-template-columns: repeat(3, 1fr); }
+}
+.spec-compare__card {
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
-  -webkit-overflow-scrolling: touch;
+  padding: var(--space-4);
 }
-.comparison__table {
-  width: 100%;
-  min-width: 640px;
-  border-collapse: collapse;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  background: var(--color-surface);
+.spec-compare__card--primary {
+  border-color: rgba(59, 111, 224, 0.5);
+  background: linear-gradient(180deg, rgba(59, 111, 224, 0.06), transparent 40%), var(--color-surface);
 }
-.comparison__table th,
-.comparison__table td {
-  padding: 14px 16px;
-  text-align: left;
+.spec-compare__title {
+  font-size: 19px;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
   border-bottom: 1px solid var(--color-border);
-  vertical-align: top;
 }
-.comparison__table thead th {
-  color: var(--color-ink);
+.spec-compare__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.spec-compare__list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.spec-compare__list strong {
+  display: block;
+  font-size: 14px;
   font-weight: 600;
-  background: var(--color-surface-raised);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.comparison__table tbody th {
   color: var(--color-ink);
-  font-weight: 500;
-  white-space: nowrap;
+  margin-bottom: 2px;
 }
-.comparison__table td { color: var(--color-slate); line-height: 1.5; }
-.comparison__table tbody tr:last-child th,
-.comparison__table tbody tr:last-child td { border-bottom: none; }
-.comparison__table tbody tr td:first-of-type,
-.comparison__table thead th:nth-child(2) {
-  color: var(--color-skylight);
+.spec-compare__list span {
+  display: block;
+  font-size: 13px;
+  color: var(--color-slate);
+  line-height: 1.5;
 }
+.spec-compare__icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  border-radius: 50%;
+  padding: 2px;
+}
+.spec-compare__icon--yes { color: var(--color-skylight); background: rgba(127, 178, 255, 0.12); }
+.spec-compare__icon--no { color: var(--color-slate); background: rgba(139, 150, 166, 0.12); }
+.spec-compare__icon--partial { color: var(--color-brass); background: rgba(201, 162, 75, 0.12); }
+
 .comparison__note {
   margin-top: var(--space-3);
   font-size: 13px;
