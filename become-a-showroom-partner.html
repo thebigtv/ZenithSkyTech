@@ -229,15 +229,48 @@
         </p>
       </div>
     </section>
+
+    <!-- ============================================================
+         2B. THREE WAYS TO PARTNER
+         Presents all three partnership types as parallel options before
+         the deep-dive into the flagship Full Showroom tier below —
+         Display Partner and Sales Professional are lighter-commitment
+         paths, both commission-based ("ask us", not published here).
+    ============================================================= -->
+    <section data-reveal>
+      <div class="container">
+        <div class="section-heading section-heading--center">
+          <p class="eyebrow">Ways to Partner</p>
+          <h2>Three ways to work with Zenith SkyTech.</h2>
+        </div>
+        <div class="conversion-block__grid">
+          <div class="conversion-block__path conversion-block__path--primary">
+            <h3>Full Showroom Partner</h3>
+            <p>A live display, regional exclusivity, sales training and full marketing support — you run the showroom experience, we back it.</p>
+          </div>
+          <div class="conversion-block__path">
+            <h3>Display Partner</h3>
+            <p>Showcase the technology in your space without taking on the full showroom role — we handle specification, installation and delivery, you earn commission. Commission structure available on request.</p>
+          </div>
+          <div class="conversion-block__path">
+            <h3>Sales Professional</h3>
+            <p>Bring us the introduction, we handle the rest. For individual sales professionals who want to work with Zenith SkyTech on a commission basis. Commission structure available on request.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============================================================
          3. WHAT THE SHOWROOM EXPERIENCE PROVIDES
          Uses the existing benefits framework so no new CSS is required.
+         This section specifically details the Full Showroom Partner
+         tier — the two lighter paths above are intentionally simpler.
     ============================================================= -->
     <section class="partner-benefits" data-reveal>
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">
-            The Showroom Experience
+            Full Showroom Partnership — In Detail
           </p>
           <h2>
             More than a display. A product your customers can experience.
@@ -541,13 +574,13 @@
             Start A Conversation
           </p>
           <h2>
-            Tell us about your showroom.
+            Tell us how you'd like to work with us.
           </h2>
           <p class="partner-form__intro">
-            Tell us a little about your showroom, the customers you work
-            with and the area you serve. We'll arrange a personal
-            conversation to discuss the opportunity and what a Zenith
-            SkyTech showroom installation could look like for your business.
+            Tell us a little about yourself or your business, and which
+            partnership route interests you. We'll arrange a personal
+            conversation to discuss what working with Zenith SkyTech could
+            look like.
           </p>
         </div>
         <form
@@ -570,14 +603,29 @@
             </label>
           </p>
           <div class="form__row">
+            <label for="partnership-type">
+              Which partnership interests you?
+            </label>
+            <select
+              id="partnership-type"
+              name="Partnership Type"
+              required
+            >
+              <option value="" disabled selected>Select one</option>
+              <option>Full Showroom Partner</option>
+              <option>Display Partner</option>
+              <option>Sales Professional</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form__row">
             <label for="business-name">
-              Business / showroom name
+              Business / showroom name <span class="form__optional">(leave blank if you're an individual sales professional)</span>
             </label>
             <input
               type="text"
               id="business-name"
               name="Business Name"
-              required
               autocomplete="organization"
             >
           </div>
@@ -597,12 +645,11 @@
             </div>
             <div class="form__row">
               <label for="business-type">
-                Business type
+                Business type <span class="form__optional">(if applicable)</span>
               </label>
               <select
                 id="business-type"
                 name="Business Type"
-                required
               >
                 <option
                   value=""
@@ -626,19 +673,22 @@
                 <option>
                   Other premium retail
                 </option>
+                <option>
+                  Not applicable — individual
+                </option>
               </select>
             </div>
           </div>
           <div class="form__row">
             <label for="message">
-              Tell us about your showroom
+              Tell us more
             </label>
             <textarea
               id="message"
               name="Message"
               rows="4"
               required
-              placeholder="Tell us a little about your showroom, the customers you work with and the products or brands you currently represent."
+              placeholder="Whichever route interests you — your showroom and the brands you represent, your sales background, or just what you'd like to know more about."
             ></textarea>
           </div>
           <div class="form__row-group">
